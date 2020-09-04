@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{% block title %} Our Team {% endblock %}
+{% load static %}
+
+{% block content %}
+
+<br>
+<div class="container">
+    <div class="container text-center">
+        <div class="display-4">ACTING EXECUTIVES</div>
+    </div>
+    <div class="row text-center">
+
+        {% for prof in profiles %}
+            {{ prof.id }}
+        {% endfor %}
+        <br>
+        {% for user in users %}
+            {{ user.id }}
+        {% endfor %}
+
+        {% for user in users %}
+        {% if user.profile.office == 'PRESIDENT'%}
+        <div class="col-md-6">
+            <img style="width: 200px; height: 200px; border-radius: 50%;" src=" {% if user.profile.profile_picture %} {{ user.profile.profile_picture.url }} {% else %} {% static 'img/user_profile.jpg' %} {% endif %}"
+                alt="img not found">
+            <p class="primary-btn primary mt-3" style="width: 70%;">
+                <strong>| {{ user.profile.office }} |</strong> <br>
+                {{ user.last_name }} {{ user.first_name }}
+            </p>
+            <p><i id="lnr-phone" class="lnr lnr-phone-handset"></i> {{ user.profile.phone }}</p>
+        </div>
+        <br>
+        {% endif %}
+        {% endfor %}
+
+        {% for user in users %}
+        {% if user.profile.office == 'VICE PRESIDENT'%}
+        <div class="col-md-6">
+            <img style="width: 200px; height: 200px; border-radius: 50%;" src=" {% if user.profile.profile_picture %} {{ user.profile.profile_picture.url }} {% else %} {% static 'img/user_profile.jpg' %} {% endif %}"
+                alt="img not found">
+            <p class="primary-btn primary mt-3" style="width: 70%;">
+                <strong>| {{ user.profile.office }} |</strong> <br>
+                {{ user.last_name }} {{ user.first_name }}
+            </p>
+            <p><i id="lnr-phone" class="lnr lnr-phone-handset"></i> {{ user.profile.phone }}</p>
+        </div>
+        <br>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+
+    <br>
+
+    <div class="row text-center">
+        {% for user in users %}
+        {% if user.profile.office == 'GENERAL SECRETARY' %}
+        <div class="col-md-4">
+            <img style="width: 200px; height: 200px; border-radius: 50%;" src=" {% if user.profile.profile_picture %} {{ user.profile.profile_picture.url }} {% else %} {% static 'img/user_profile.jpg' %} {% endif %}"
+                alt="img not found">
+            <p class="primary-btn primary mt-3" style="width: 70%;">
+                <strong>| {{ user.profile.office }} |</strong> <br>
+                {{ user.last_name }} {{ user.first_name }}
+            </p>
+            <p><i id="lnr-phone" class="lnr lnr-phone-handset"></i> {{ user.profile.phone }}</p>
+        </div>
+        <br>
+        {% endif %}
+        {% endfor %}
+        {% for user in users %}
+        {% if user.profile.office == 'ORGANIZING SECRETARY' %}
+        <div class="col-md-4 lg-4">
+            <img style="width: 200px; height: 200px; border-radius: 50%;" src=" {% if user.profile.profile_picture %} {{ user.profile.profile_picture.url }} {% else %} {% static 'img/user_profile.jpg' %} {% endif %}"
+                alt="img not found">
+            <p class="primary-btn primary mt-3" style="width: 70%;">
+                <strong>| {{ user.profile.office }} |</strong> <br>
+                {{ user.last_name }} {{ user.first_name }}
+            </p>
+            <p><i id="lnr-phone" class="lnr lnr-phone-handset"></i> {{ user.profile.phone }}</p>
+        </div>
+        <br>
+        {% endif %}
+        {% endfor %}
+        {% for user in users %}
+        {% if user.profile.office == 'FINANCIAL SECRETARY' %}
+        <div class="col-md-4">
+            <img style="width: 200px; height: 200px; border-radius: 50%;" src=" {% if user.profile.profile_picture %} {{ user.profile.profile_picture.url }} {% else %} {% static 'img/user_profile.jpg' %} {% endif %}"
+                alt="img not found">
+            <p class="primary-btn primary mt-3" style="width: 70%;">
+                <strong>| {{ user.profile.office }} |</strong> <br>
+                {{ user.last_name }} {{ user.first_name }}
+            </p>
+            <p><i id="lnr-phone" class="lnr lnr-phone-handset"></i> {{ user.profile.phone }}</p>
+        </div>
+        <br>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <br>
+    <div class="row text-center">
+        {% for user in users %}
+        {% if user.profile.office == 'PRO' %}
+        <div class="col-md-4">
+            <img style="width: 200px; height: 200px; border-radius: 50%;" src=" {% if user.profile.profile_picture %} {{ user.profile.profile_picture.url }} {% else %} {% static 'img/user_profile.jpg' %} {% endif %}"
+                alt="img not found">
+            <p class="primary-btn primary mt-3" style="width: 70%;">
+                <strong>| {{ user.profile.office }} |</strong> <br>
+                {{ user.last_name }} {{ user.first_name }}
+            </p>
+            <p><i id="lnr-phone" class="lnr lnr-phone-handset"></i> {{ user.profile.phone }}</p>
+        </div>
+        <br>
+        {% endif %}
+        {% endfor %} {% for user in users %}
+        {% if user.profile.office == 'TREASURER' %}
+        <div class="col-md-4">
+            <img style="width: 200px; height: 200px; border-radius: 50%;" src=" {% if user.profile.profile_picture %} {{ user.profile.profile_picture.url }} {% else %} {% static 'img/user_profile.jpg' %} {% endif %}"
+                alt="img not found">
+            <p class="primary-btn primary mt-3" style="width: 70%;">
+                <strong>| {{ user.profile.office }} |</strong> <br>
+                {{ user.last_name }} {{ user.first_name }}
+            </p>
+            <p><i id="lnr-phone" class="lnr lnr-phone-handset"></i> {{ user.profile.phone }}</p>
+        </div>
+        <br>
+        {% endif %}
+        {% endfor %} {% for user in users %}
+        {% if user.profile.office == 'TECH SUPPORT' %}
+        <div class="col-md-4">
+            <img style="width: 200px; height: 200px; border-radius: 50%;" src=" {% if user.profile.profile_picture %} {{ user.profile.profile_picture.url }} {% else %} {% static 'img/user_profile.jpg' %} {% endif %}"
+                alt="img not found">
+            <p class="primary-btn primary mt-3" style="width: 70%;">
+                <strong>| {{ user.profile.office }} |</strong> <br>
+                {{ user.last_name }} {{ user.first_name }}
+            </p>
+            <p><i id="lnr-phone" class="lnr lnr-phone-handset"></i> {{ user.profile.phone }}</p>
+        </div>
+        <br>
+        {% endif %}
+        {% endfor %}
+    </div>
+<hr>
+<div class="container text-center">
+    <div class="display-4">MEET OUR JUNIOR EXECUTIVES</div>
+</div>
+<hr>
+    <div class="row text-center">
+        {% for user in users %}
+        {% if user.profile.office == 'JUNIOR EXECUTIVE' %}
+        <div class="col-md-4">
+            <img style="width: 200px; height: 200px; border-radius: 50%;" src=" {% if user.profile.profile_picture %} {{ user.profile.profile_picture.url }} {% else %} {% static 'img/user_profile.jpg' %} {% endif %}"
+                alt="img not found">
+            <p class="primary-btn primary mt-3" style="width: 70%;">
+                <strong>| {{ user.profile.office }} |</strong> <br>
+                {{ user.last_name }} {{ user.first_name }}
+            </p>
+            <p><i id="lnr-phone" class="lnr lnr-phone-handset"></i> {{ user.profile.phone }}</p>
+        </div>
+        <br>
+        {% endif %}
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<br>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="popular-post-wrap">
+    <div class="row">
+
+
+
+        {% for image in pictures %}
+        <div class="col-lg-4">
+            <div class="feature-img-wrap relative">
+                <div class="feature-img relative mb-3">
+                    <div class="overlay  p-3 text-white"> {{ image.related_event }} </div>
+                    <img class="img-fluid" src="{{ image.image.url }}" alt="">
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <h4>No images Uploaded</h4>
+
+        {% endfor %}
+
+
+    </div>
+
+</div>
+
+{% endblock %}

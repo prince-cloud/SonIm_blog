@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<div class="single-post-wrap">
+    <div class="feature-img-thumb relative">
+        <div class="overlay"></div>
+        <img class="img-fluid" src="{{ eventdetail.image.url }}" alt="">
+    </div>
+    <div class="content-wrap">
+        <ul class="tags mt-10">
+            <li><a href="#see_pictures">See Photos </a></li>
+            {% if eventdetail.video_url %}
+            <li><a href="{{ eventdetail.video_url }}">Watch Videos </a></li>
+            {% endif %}
+        </ul>
+        <a href="#">
+            <h3>{{ eventdetail.title }}</h3>
+        </a>
+        <ul class="meta pb-20">
+            <li><a href="#"><span class="lnr lnr-user"></span>{{ eventdetail.author }}</a></li>
+            <li><a href="#"><span class="lnr lnr-calendar-full"></span>{{ eventdetail.created_date }}</a></li>
+        </ul>
+        <p>
+            {{ eventdetail.content }}
+        </p>
+
+        <div class="navigation-wrap justify-content-between d-flex">
+            <a class="prev" href="{% url 'index' %}"><span class="lnr lnr-arrow-left"></span>Back</a>
+        </div>
+        <br>
+        <div class="comment-sec-area">
+            <div class="container">
+                <div class="row flex-column">
+                    {% if eventdetail.comments.all %}
+                    {% if eventdetail.comments.count == 1 %}
+                    <h4>{{ eventdetail.comments.count }} Comment ... </h4>
+                    {% else %}
+                    <h4>{{ eventdetail.comments.count }} Comments ... </h4>
+                    {% endif %}
+                    {% endif %}
+                    <br>
+
+                    {% if not eventdetail.comments.all %}
+                    <h4 class="text-danger">No comments</h4>
+                    {% else %}
+                    {% for comment in eventdetail.comments.all %}
+                    <div class="comment-list">
+                        <div class="single-comment justify-content-between d-flex">
+                            <div class="user justify-content-between d-flex">
+                                <div class="thumb">
+                                    <img src="img/blog/c3.jpg" alt="">
+                                </div>
+                                <div class="desc">
+                                    <h5><a href="#">{{ comment.name }}</a></h5>
+                                    <p class="date">{{ comment.date_created }}</p>
+                                    <blockquote>
+                                        {{ comment.body }}
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <div class="reply-btn">
+                                <a href="" class="btn-reply text-uppercase">reply</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="comment-form">
+        <h4>Post Comment</h4>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ comment_form.name }}
+            </div>
+            <div class="form-group" >
+                {{ comment_form.body }}
+            </div>
+            <div class="col-lg-12">
+                <div class="alert-msg" style="text-align: left;"></div>
+                <button class="primary-btn primary" style="float: right;">Post Comment</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<hr>
+<div class="container">
+    <div class="row text-center">
+        <dvi class="col-lg-12">
+            <div class="display-5">
+                RELATED IMAGES
+            </div>
+        </dvi>
+    </div>
+</div>
+<hr>
+
+<div class="popular-post-wrap">
+    <div class="row" id="see_pictures">
+
+        {% for image in pictures %}
+        {% if image.related_event_id == eventdetail.id %}
+        <div class="col-lg-6 sm-6 md-6">
+            <div class="feature-img-wrap relative">
+                <div class="feature-img relative mb-3">
+                    <img class="img-fluid" src="{{ image.image.url }}" alt="">
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% empty %}
+        <h4>No Related Imgaes Uploaded</h4>
+
+        {% endfor %}
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}

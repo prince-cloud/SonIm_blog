@@ -1,0 +1,278 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Sonny impacuts {% endblock %}
+{% block content %}
+<section class="top-post-area pt-10">
+	<div class="container no-padding">
+		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img class="d-block w-100" src="{% static 'img/top-post1.jpg' %}" alt="First slide">
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" src="{% static 'img/top-post2.jpg' %}" alt="Second slide">
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" src="{% static 'img/top-post3.jpg' %}" alt="Third slide">
+				</div>
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+	</div>
+	</div>
+</section>
+<!-- End top-post Area -->
+<!-- Start latest-post Area -->
+<section class="latest-post-area pb-120">
+	<div class="container no-padding">
+		<div class="row">
+			<div class="col-lg-8 post-list">
+				<!-- Start latest-post Area -->
+				<div class="latest-post-wrap">
+					<h4 class="cat-title">Latest Events</h4>
+
+
+
+					{% for event in events %}
+					<div class="single-latest-post row align-items-center">
+						<div class="col-lg-5 post-left">
+							<div class="feature-img relative">
+								<div class="overlay overlay-bg"></div>
+								<img class="img-fluid" src="{{ event.image.url }}" alt="">
+							</div>
+
+							<ul class="tags">
+								<li><a href="#">New</a></li>
+							</ul>
+						</div>
+						<div class="col-lg-7 post-right">
+							<a href="{% url 'eventdetail' event.slug %}">
+								<h4>{{ event.title }}</h4>
+							</a>
+							<ul class="meta">
+								<li><a href="#"><span class="lnr lnr-user"></span>{{ event.author }}</a></li>
+								<li><a href="#"><span class="lnr lnr-calendar-full"></span>{{ event.created_date.date }}</a>
+								</li>
+								<li><a href="#"><span class="lnr lnr-bubble"></span>{{ event.comments.count }} Comments</a></li>
+							</ul>
+							<p class="excert">
+								{{ event.description }}
+							</p>
+						</div>
+					</div>
+					{% empty%}
+					<br>
+					<h2>No Events</h2>
+					{% endfor %}
+
+
+				</div>
+				<!-- End latest-post Area -->
+
+				<!-- Start popular-post Area -->
+<!-- 				<div class="popular-post-wrap">
+					<h4 class="title">Popular Posts</h4>
+					<div class="feature-post relative">
+						<div class="feature-img relative">
+							<div class="overlay overlay-bg"></div>
+							<img class="img-fluid" src="{% static 'img/f1.jpg' %}" alt="">
+						</div>
+						<div class="details">
+							<ul class="tags">
+								<li><a href="#">Food Habit</a></li>
+							</ul>
+							<a href="image-post.html">
+								<h3>A Discount Toner Cartridge Is Better Than Ever.</h3>
+							</a>
+							<ul class="meta">
+								<li><a href="#"><span class="lnr lnr-user"></span>Mark wiens</a></li>
+								<li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April, 2018</a>
+								</li>
+								<li><a href="#"><span class="lnr lnr-bubble"></span>06 Comments</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="row mt-20 medium-gutters">
+						<div class="col-lg-6 single-popular-post">
+							<div class="feature-img-wrap relative">
+								<div class="feature-img relative">
+									<div class="overlay overlay-bg"></div>
+									<img class="img-fluid" src="{% static 'img/f2.jpg' %}" alt="">
+								</div>
+								<ul class="tags">
+									<li><a href="#">Travel</a></li>
+								</ul>
+							</div>
+							<div class="details">
+								<a href="image-post.html">
+									<h4>A Discount Toner Cartridge Is
+										Better Than Ever.</h4>
+								</a>
+								<ul class="meta">
+									<li><a href="#"><span class="lnr lnr-user"></span>Mark wiens</a></li>
+									<li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April,
+											2018</a></li>
+									<li><a href="#"><span class="lnr lnr-bubble"></span>06 </a></li>
+								</ul>
+								<p class="excert">
+									Lorem ipsum dolor sit amet, consecteturadip isicing elit, sed do eiusmod
+									tempor incididunt ed do eius.
+								</p>
+							</div>
+						</div>
+						<div class="col-lg-6 single-popular-post">
+							<div class="feature-img-wrap relative">
+								<div class="feature-img relative">
+									<div class="overlay overlay-bg"></div>
+									<img class="img-fluid" src="{% static 'img/f3.jpg' %}" alt="">
+								</div>
+								<ul class="tags">
+									<li><a href="#">Travel</a></li>
+								</ul>
+							</div>
+							<div class="details">
+								<a href="image-post.html">
+									<h4>A Discount Toner Cartridge Is
+										Better Than Ever.</h4>
+								</a>
+								<ul class="meta">
+									<li><a href="#"><span class="lnr lnr-user"></span>Mark wiens</a></li>
+									<li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April,
+											2018</a></li>
+									<li><a href="#"><span class="lnr lnr-bubble"></span>06 </a></li>
+								</ul>
+								<p class="excert">
+									Lorem ipsum dolor sit amet, consecteturadip isicing elit, sed do eiusmod
+									tempor incididunt ed do eius.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div> -->
+				<!-- End popular-post Area -->
+				<!-- Start relavent-story-post Area -->
+
+				<!-- End relavent-story-post Area -->
+			</div>
+			<div class="col-lg-4">
+				<div class="sidebars-area">
+					<div class="single-sidebar-widget editors-pick-widget">
+						<h6 class="title">Up Coming Event </h6>
+
+						{% for upevent in upcomingevents %}
+						<div class="editors-pick-post">
+							<div class="details">
+								<a href="image-post.html">
+									<h4 class="mt-20"> {{ upevent.title }} </h4>
+								</a>
+								<ul class="meta">
+									<li><strong><a href="#"><span class="lnr lnr-clock text-danger"></span>Time:
+												{{ upevent.time }}</a></strong></li>
+									<li><a href="#"><span class="lnr lnr-calendar-full text-danger"></span>Date:
+											{{ upevent.date }}</a>
+									</li>
+								</ul>
+								<p class="excert">
+									{{ upevent.description }}
+								</p>
+							</div>
+						</div>
+						{% empty%}
+						<h4>No Upcoming Event </h4>
+						{% endfor %}
+
+					</div>
+					<div class="single-sidebar-widget newsletter-widget">
+						<h6 class="title">Newsletter</h6>
+						<p>
+							Here, I focus on a range of items
+							andfeatures that we use in life without
+							giving them a second thought.
+						</p>
+						<div class="form-group d-flex flex-row">
+							<div class="col-autos">
+								<div class="input-group">
+									<input class="form-control" placeholder="Email Address"
+										onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'"
+										type="text">
+								</div>
+							</div>
+							<a href="#" class="bbtns">Subcribe</a>
+						</div>
+						<p>
+							You can unsubscribe us at any time
+						</p>
+					</div>
+
+					<div class="single-sidebar-widget social-network-widget">
+						<h6 class="title">Social Networks</h6>
+						<ul class="social-list">
+
+							<!--Whatsapp-->
+							<li class="d-flex justify-content-between align-items-center wh">
+								<div class="icons d-flex flex-row align-items-center">
+									<i class="fa fa-whatsapp" aria-hidden="true"></i>
+									<p>2 Groups</p>
+								</div>
+								<a href="https://chat.whatsapp.com/FWRZU5SWqFm4alceTcc806">Join</a>
+							</li>
+							
+							<!--twitter-->
+							<li class="d-flex justify-content-between align-items-center tw">
+								<div class="icons d-flex flex-row align-items-center">
+									<i class="fa fa-twitter" aria-hidden="true"></i>
+									<p>5 Followers</p>
+								</div>
+								<a href="https://twitter.com/sonnyimpactus">Follow us</a>
+							</li>
+
+							<!--instagram-->
+							<li class="d-flex justify-content-between align-items-center ig">
+								<div class="icons d-flex flex-row align-items-center">
+									<i class="fa fa-instagram" aria-hidden="true"></i>
+									<p>7 followers</p>
+								</div>
+								<a href="https://www.instagram.com/sonnyimpactus_/">Follow us</a>
+							</li>
+
+							<!--facebook-->
+							<li class="d-flex justify-content-between align-items-center fb">
+								<div class="icons d-flex flex-row align-items-center">
+									<i class="fa fa-facebook" aria-hidden="true"></i>
+									<p>983 Likes</p>
+								</div>
+								<a href="#">Like our page</a>
+							</li>
+
+							<!--youtube-->
+							<li class="d-flex justify-content-between align-items-center yt">
+								<div class="icons d-flex flex-row align-items-center">
+									<i class="fa fa-youtube-play" aria-hidden="true"></i>
+									<p>983 Subscribers</p>
+								</div>
+								<a href="#">Subscribe</a>
+							</li>
+
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+</div>
+
+{% endblock %}

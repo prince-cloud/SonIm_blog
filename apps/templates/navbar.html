@@ -1,0 +1,65 @@
+<header>
+    <div class="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-6 header-top-left no-padding">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/sonnyimpactus"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-6 header-top-right no-padding">
+                    <ul>
+                        <li><a href="tel:+440 012 3654 896"><span class="lnr lnr-phone-handset"></span><span>+233 243
+                                    186 008</span></a></li>
+                        <li><a href="mailto:support@colorlib.com"><span
+                                    class="lnr lnr-envelope"></span><span>sonnyimpactus@gmail.com</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container main-menu" id="main-menu">
+        <div class="row align-items-center justify-content-between">
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li class="menu-active"><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                    <li class="menu-has-children"><a href="#">Get Involved</a>
+                        <ul>
+                            <li><a href="#"><span class="lnr lnr-heart"></span> Donate</a></li>
+                            <li><a href="#"><span class="lnr lnr-hand"></span> Volunteer</a></li>
+                            <li><a href="{% url 'be_a_member' %}" id="beamember-link"><span
+                                        class="lnr lnr-users"></span> Become a Member</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'our_team' %}">Our Team</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                    {% if request.user.is_anonymous %}
+                    <li><a href="{% url 'login' %}">Log In</a></li>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                    <li class="menu-has-children"><a href="#">Adminstration</a>
+                        <ul>
+                            <li><a href="{% url 'add_event' %}"><span class="lnr lnr-plus-circle"></span> Event </a>
+                            </li>
+                            <li><a href="{% url 'add_upcoming_event' %}"><span class="lnr lnr-plus-circle"></span>
+                                    Upcoming Event </a></li>
+                            <li><a href="{% url 'add_picture' %}"><span class="lnr lnr-plus-circle"></span> Picture </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    {% endif %}
+                </ul>
+            </nav><!-- #nav-menu-container -->
+            <div class="navbar-right">
+
+            </div>
+        </div>
+    </div>
+</header>
