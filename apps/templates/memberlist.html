@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %} Member list {% endblock %}
 {% load static %}
 
 {% block content %}
@@ -13,7 +14,6 @@
                             <th> No </th>
                             <th> Name </th>
                             <th> Phone </th>
-                            <th> email </th>
                             <th> Reg. Date </th>
                         </tr>
                     </thead>
@@ -23,7 +23,6 @@
                             <td>{{ forloop.counter }}</td>
                             <td>{{ member.full_name }}</td>
                             <td>{{ member.phone }}</td>
-                            <td>{{ member.email }}</td>
                             <td>{{ member.reg_date }}</td>
                         </tr>
                         {% empty %}
