@@ -10,9 +10,14 @@
     </div>
     <div class="content-wrap">
         <ul class="tags mt-10">
+            {% if request.user.is_authenticated %}
+            <li><a href="{% url 'add_picture' eventdetail.id %}">Add Pictures </a></li>
+            <li><a href="#">Delete Post </a></li>
+            {% else %}
             <li><a href="#see_pictures">See Photos </a></li>
             {% if eventdetail.video_url %}
             <li><a href="{{ eventdetail.video_url }}">Watch Videos </a></li>
+            {% endif %}
             {% endif %}
         </ul>
         <a href="#">
@@ -22,7 +27,7 @@
             <li><a href="#"><span class="lnr lnr-user"></span>{{ eventdetail.author }}</a></li>
             <li><a href="#"><span class="lnr lnr-calendar-full"></span>{{ eventdetail.created_date }}</a></li>
         </ul>
-        <p>
+        <p class="text-justify" >
             {{ eventdetail.content }}
         </p>
 
@@ -55,7 +60,7 @@
                                 <div class="desc">
                                     <h5><a href="#">{{ comment.name }}</a></h5>
                                     <p class="date">{{ comment.date_created }}</p>
-                                    <blockquote>
+                                    <blockquote class="text-justify">
                                         {{ comment.body }}
                                     </blockquote>
                                 </div>
@@ -108,7 +113,7 @@
     <div class="row" id="see_pictures">
 
         {% for image in pictures %}
-        {% if image.related_event_id == eventdetail.id %}
+        {% if image.name == eventdetail.slug %}
         <div class="col-lg-6 sm-6 md-6">
             <div class="feature-img-wrap relative">
                 <div class="feature-img relative mb-3">

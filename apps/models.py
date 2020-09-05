@@ -49,25 +49,6 @@ class Event(models.Model):
         return self.title
 
 
-class Gallery(models.Model):
-    #name = models.CharField(max_length=100)
-    related_event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    image = models.FileField(upload_to='gallery_pictures/', blank=False)
-    created_date = models.DateField(auto_now=True)
-
-    slug = models.SlugField(blank=True, null=True)
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.related_event)
-        super(Gallery, self).save(*args, **kwargs)
-
-    class Meta:
-        ordering = ('-created_date',)
-
-    def __str__(self):
-        return str(self.related_event)
-
 
 class Upcomingevent(models.Model):
     title = models.CharField(max_length=100)
@@ -89,6 +70,7 @@ class Member(models.Model):
     phone = models.IntegerField(null=False, blank=False)
     email = models.EmailField()
     profile = models.ImageField(upload_to='member_prof_pic/', blank=True)
+    reg_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.full_name
@@ -115,6 +97,12 @@ class Comment(models.Model):
 
 
 
-class Images(models.Model):
-    name = models.CharField(max_length=10)
-    image = models.FileField(upload_to='files/', blank=True)
+class Picture(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.FileField(upload_to='event_files/', blank=True)
+
+
+    def __str__(self):
+        return self.name
+    
+

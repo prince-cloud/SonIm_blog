@@ -22,8 +22,8 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <div class="bg-gray p-2 pt-5 pb-5">
-                <h2 class="text-center">Add Picture to Gallery</h2>
-                <form method="POST" action="{% url 'add_picture' %}?next=/" enctype="multipart/form-data">
+                <h2 class="text-center">Add Pictures</h2>
+                <form method="POST" action="#" enctype="multipart/form-data">
                     <br>
                     {% csrf_token %}
                     {{ add_picture_form | crispy }}

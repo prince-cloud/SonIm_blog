@@ -11,15 +11,7 @@
         <div class="display-4">ACTING EXECUTIVES</div>
     </div>
     <div class="row text-center">
-
-        {% for prof in profiles %}
-            {{ prof.id }}
-        {% endfor %}
         <br>
-        {% for user in users %}
-            {{ user.id }}
-        {% endfor %}
-
         {% for user in users %}
         {% if user.profile.office == 'PRESIDENT'%}
         <div class="col-md-6">

@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.db import models
 from django.contrib.auth.decorators import login_required
-from .models import Event, Upcomingevent, Gallery, Profile, Comment, Images
-from .forms import MemberForm, EventForm, UpcomingEventForm, AddPictureForm, MessageForm, ProfileForm, RegisterForm, AddCommentForm
+from .models import Event, Upcomingevent, Profile, Comment, Picture, Member
+from .forms import AddPictureForm, MemberForm, EventForm, UpcomingEventForm,  MessageForm, ProfileForm, RegisterForm, AddCommentForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.forms import modelformset_factory
@@ -30,7 +30,7 @@ def event(request):
 
 def eventdetail(request, event_slug):
     eventdetail = get_object_or_404(Event, slug=event_slug)
-    pictures = Gallery.objects.all()
+    pictures = Picture.objects.all()
 
     if request.method == 'POST':
         form = AddCommentForm(data=request.POST, files=request.FILES)
@@ -51,23 +51,10 @@ def eventdetail(request, event_slug):
                 'pictures': pictures,
             })
 
-        
-
-def event_pictures(request):
-    gallerypics = Gallery.objects.all()
-    eventpics = Event.objects.all()
-    #event_pictures = get_object_or_404(Gallery, slug=gallery_slug)
-    return render(request, 'event_pictures.html',
-                  {
-                      'event_pictures': event_pictures,
-                      'gallerypics': gallerypics,
-                      'eventpics': eventpics,
-
-                  })
 
 
 def gallery(request):
-    pictures = Gallery.objects.all()
+    pictures = Picture.objects.all()
     return render(request,
                   'gallery.html',
                   {
@@ -80,6 +67,7 @@ def be_a_member(request):
         form = MemberForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
+            return redirect('/')
     return render(request,
                   'be_a_member.html',
                   {
@@ -95,7 +83,7 @@ def add_event(request):
             newevent = form.save(commit=False)
             newevent.author = request.user
             newevent.save()
-            return redirect('index')
+            return redirect('/')
     return render(request,
                   'add_event.html',
                   {
@@ -118,22 +106,6 @@ def add_upcoming_event(request):
                       'add_upcoming_event_form': UpcomingEventForm(),
                   })
 
-
-""" @login_required
-def add_picture(request):
-    if request.method == 'POST':
-        form = AddPictureForm(data=request.POST, files=request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('add_picture')
-        else:
-            messages.error(request, 'Picture not added')
-    return render(request,
-                  'add_picture.html',
-                  {
-                      'add_picture_form': AddPictureForm(),
-                  })
- """
 
 def about(request):
     return render(request, 'about.html')
@@ -192,21 +164,32 @@ def create_profile(request):
 
                   })
 
-
 @login_required
-def add_picture(request):
+def add_picture(request, id):
+    add_picture = get_object_or_404(Event, id=id)
+
     if request.method == 'POST':
         form = AddPictureForm(data=request.POST, files=request.FILES)
         files = request.FILES.getlist('image')
         if form.is_valid():
+            
             for f in files:
-                gallery = Gallery(image=f,)
-                gallery.save()
-        else:
-            messages.error(request, 'Picture not added')
-    return render(request,
-                  'add_picture.html',
-                  {
-                      'add_picture_form': AddPictureForm(),
-                  })
-                  
+                picture = form.save(commit=False)
+                picture.id = add_picture.id
+                picture = Picture.objects.create(image=f, name=add_picture.slug)
+                picture.save()
+            
+            return redirect ('index')
+    return render(request, 
+        'add_picture.html',
+        {
+            'event': event,
+            'add_picture': add_picture,
+            'add_picture_form': AddPictureForm(),
+            
+            
+        })
+
+def registered_members(request):
+    members = Member.objects.all()
+    return render (request, 'memberlist.html', {'members': members})

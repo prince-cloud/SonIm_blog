@@ -1,5 +1,5 @@
 from django import forms
-from .models import Member, Event, Upcomingevent, Gallery, Message, Profile, Comment
+from .models import Member, Event, Upcomingevent, Message, Profile, Comment, Picture
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from multiupload.fields import MultiFileField
@@ -25,7 +25,7 @@ class ProfileForm(forms.ModelForm):
     )
     class Meta:
         model = Profile
-        fields = ( 'phone', 'profile_picture', 'office',)
+        fields = ('username', 'phone', 'profile_picture', 'office',)
 
 
 class RegisterForm(forms.ModelForm):
@@ -71,31 +71,6 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ('title', 'description', 'content', 'video_url', 'image', )
-
-
-class AddPictureForm(forms.ModelForm):
-    class Meta:
-        model = Gallery
-        fields = ('related_event', 'image')
-        widgets = {
-            'image': forms.ClearableFileInput(
-                attrs={
-                    'multiple': True
-                }
-            )
-        }
-""" 
-    related_event = forms.ModelChoiceField(
-        widget=forms.Select,queryset=Event.objects.all()
-    )
-
-    image = forms.FileField(
-        widget=forms.ClearableFileInput(
-        attrs={
-            'multiple': True
-        }
-    ))
- """
 
 
 class DateInput(forms.DateTimeInput):
@@ -162,4 +137,16 @@ class AddCommentForm(forms.ModelForm):
                     'placeholder': 'Enter Comments here'
                 }
             ),
+        }
+
+class AddPictureForm(forms.ModelForm):
+    class Meta:
+        model = Picture
+        fields = ('image',)
+        widgets = {
+            'image': forms.ClearableFileInput(
+                attrs={
+                    'multiple': True
+                }
+            )
         }
