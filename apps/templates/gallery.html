@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
+{% block title %} Gallery {% endblock %}
 {% load static %}
 
 
 {% block content %}
-{% block title %} Gallery {% endblock %}
 
 <div class="popular-post-wrap">
     <div class="row">
-
-
 
         {% for image in pictures %}
         <div class="col-lg-4">

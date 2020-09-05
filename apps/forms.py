@@ -2,7 +2,6 @@ from django import forms
 from .models import Member, Event, Upcomingevent, Message, Profile, Comment, Picture
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from multiupload.fields import MultiFileField
 
 class ProfileForm(forms.ModelForm):
     profile_picture = forms.ImageField(
