@@ -67,7 +67,10 @@ def be_a_member(request):
         form = MemberForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Form Successfully Submitted')
             return redirect('/')
+        else:
+            messages.warning(request, 'Invalid Data Entry')
     return render(request,
                   'be_a_member.html',
                   {
@@ -83,7 +86,10 @@ def add_event(request):
             newevent = form.save(commit=False)
             newevent.author = request.user
             newevent.save()
+            messages.success(request, 'Event Successfully Added')
             return redirect('/')
+        else:
+            messages.warning(request, 'Invalid Data Entry')
     return render(request,
                   'add_event.html',
                   {
@@ -97,9 +103,10 @@ def add_upcoming_event(request):
         form = UpcomingEventForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            messages.success(request, 'Upcoming Event Successfully Added')
+            return redirect('/')
         else:
-            messages.error(request, 'Invalid Data Entry')
+            messages.warning(request, 'Invalid Data Entry')
     return render(request,
                   'add_upcoming_event.html',
                   {
@@ -118,7 +125,7 @@ def contact(request):
             form.save()
             messages.success(request, 'Message successfully sent')
         else:
-            messages.error(request, 'Invalid Data Entry')
+            messages.warning(request, 'Invalid Data Entry')
     return render(request,
                   'contact.html',
                   {
@@ -140,8 +147,10 @@ def register(request):
             user = form.save()
             user.set_password(data['password'])
             user.save()
+            messages.success(request, 'Please select your Username and complete the registration below')
             return redirect('create_profile')
-
+        else:
+            messages.warning(request, 'Invalid Data Entry')
     else:
         form = RegisterForm()
     return render(request, 'registration/register.html', {"form": form})
@@ -156,8 +165,10 @@ def create_profile(request):
             newform = form.save(commit=False)
             newform.user_id = new_user.id
             form.save()
+            messages.success(request, 'Regisration Successfully')
             return redirect('our_team')
-
+        else:
+            messages.error(request, 'Invalid Data Entry')
     return render(request, 'registration/create_profile.html',
                   {
                       'create_user_form': ProfileForm(),
@@ -178,8 +189,10 @@ def add_picture(request, id):
                 picture.id = add_picture.id
                 picture = Picture.objects.create(image=f, name=add_picture.slug)
                 picture.save()
-            
+            messages.success(request, 'Pictures Successfully Added')
             return redirect ('index')
+        else:
+            messages.error(request, 'Invalid Data Entry')
     return render(request, 
         'add_picture.html',
         {

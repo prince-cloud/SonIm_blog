@@ -9,24 +9,6 @@
     <div class="container">
         <div class="row contact-wrap">
             <div class="map-wrap" style="width:100%;" id="map">
-                <div class="row">
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4">
-                        {% if messages %}
-                        {% for message in messages %}
-                        <h4 class="text-center">
-                            {{ message }}
-                        </h4>
-                        {% endfor %}
-                        {% endif %}
-
-                        {% if message_form.errors %}
-                        <h1 class="text-danger">Form error in all</h1>
-                        {% endif %}
-
-                    </div>
-                    <div class="col-lg-4"></div>
-                </div>
             </div>
             <div class="col-lg-3 d-flex flex-column address-wrap">
                 <div class="single-contact-address d-flex flex-row">

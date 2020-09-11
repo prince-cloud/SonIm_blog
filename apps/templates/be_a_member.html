@@ -11,10 +11,11 @@
         <div class="col-md-4">
             <div class="bg-gray p-2 pt-5 pb-5">
                 <h2 class="text-center">Become A Member</h2>
+                <br>
                 <form method="POST" action="{% url 'be_a_member' %}?next=/" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ member_form | crispy }}
-                    <p><input class="btn btn-dark btn-large" type="submit" value="Enter"> </p>
+                    {{ member_form | crispy }}s
+                    <p><input class="btn btn-dark btn-large" type="submit" value="Submit"> </p>
                 </form>
             </div>
         </div>

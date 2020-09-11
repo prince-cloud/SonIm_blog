@@ -8,27 +8,13 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            {% if messages %}
-            {% for message in messages %}
-            <br>
-            <h4 class="text-center text-danger">
-                {{ message }}
-            </h4>
-            {% endfor %}
-            {% endif %}
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
             <div class="bg-gray p-2 pt-5 pb-5">
                 <h2 class="text-center">Add Upcoming Event</h2>
                 <br>
                 
                 <form class="form-area contact-form text-left" method="POST" action="{% url 'add_upcoming_event' %}?next=/" enctype="multipart/form-data">
                     {% csrf_token %}
-                            {{ add_upcoming_event_form | crispy }}
+                    {{ add_upcoming_event_form | crispy }}
 
 
                     <div class="col-lg-12">
