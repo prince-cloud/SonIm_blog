@@ -8,12 +8,13 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <div class="bg-gray p-2 pt-5 pb-5">
+            <div class="form p-2 pt-1 mt-3 mb-5">
                 <h2 class="text-center">Log In</h2>
                 <form method="POST" action="">
                     {% csrf_token %}
                     {{ form | crispy }}
-                    <p><input class="btn btn-primary btn-large" type="submit" value="Enter"> </p>
+                    <button class="btn btn-dark btn-block btn-lg" type="submit" value="Login"> 
+                        <i class="fa fa-lock"></i> Login </button>
                 </form>
             </div>
         </div>

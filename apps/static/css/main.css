@@ -3330,3 +3330,10 @@ div.thumbnail_container .overlay-bg {
 .footer-area .footer-bottom .footer-social a:hover {
   background: #f6214b;
 }
+
+.form{
+  background-color: white;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 5px;
+}

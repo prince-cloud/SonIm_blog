@@ -11,7 +11,7 @@
         <div class="col-md-4">
             <br>
             <h2 class="text-center">Complete Registration</h2>
-            <div class="bg-gray p-2 pt-5 pb-5">
+            <div class="form p-2 mt-5 mb-5">
                 <form method="POST" action="{% url 'create_profile' %}?next=/" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ create_user_form | crispy }}

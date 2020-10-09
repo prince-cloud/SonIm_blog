@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 header-top-right no-padding">
                     <ul>
-                        <li><a href="tel:2330 024 3186 008"><span class="lnr lnr-phone-handset"></span><span>+233 243
+                        <li><a href="tel:233 24 3186 008"><span class="lnr lnr-phone-handset"></span><span>+233 243
                                     186 008</span></a></li>
                         <li><a href="mailto:sonnyimpactus@gmail.com"><span
                                     class="lnr lnr-envelope"></span><span>sonnyimpactus@gmail.com</span></a></li>
@@ -39,7 +39,7 @@
                     <li><a href="{% url 'contact' %}">Contact</a></li>
                     <li><a href="{% url 'register' %}">Register</a></li>
                     {% if request.user.is_anonymous %}
-                    <li><a href="{% url 'login' %}">Log In</a></li>
+                    <li><a href="{% url 'login' %}"> <i class="fa fa-lock"></i> Log In</a></li>
                     {% endif %}
                     {% if request.user.is_authenticated %}
                     <li class="menu-has-children"><a href="#">Adminstration</a>
@@ -54,7 +54,7 @@
                                 
                         </ul>
                     </li>
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    <li><a href="{% url 'logout' %}"> <i class="fa fa-lock"></i> Log Out</a></li>
                     {% endif %}
                 </ul>
             </nav><!-- #nav-menu-container -->
