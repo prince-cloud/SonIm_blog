@@ -5,16 +5,15 @@
 {% block content %}
 <br>
 <div class="popular-post-wrap">
-    <div class="container">
         <div class="row">
             <div class="col-12">
                 <table class="table shadow table-striped">
-                    <thead class="bg-dark text-white w-auto">
+                    <thead class="bg-dark text-white w-100">
                         <tr>
-                            <th> No </th>
+                            <th> # </th>
                             <th> Name </th>
                             <th> Phone </th>
-                            <th> email </th>
+                            <!-- <th> email </th> -->
                             <th> Reg. Date </th>
                         </tr>
                     </thead>
@@ -24,7 +23,7 @@
                             <td>{{ forloop.counter }}</td>
                             <td>{{ member.full_name }}</td>
                             <td>{{ member.phone }}</td>
-                            <td>{{ member.email }}</td>
+                            <!-- <td>{{ member.email }}</td> -->
                             <td>{{ member.reg_date }}</td>
                         </tr>
                         {% empty %}
@@ -38,7 +37,6 @@
                 </table>
             </div>
         </div>
-    </div>
 </div>
 
 {% endblock %}

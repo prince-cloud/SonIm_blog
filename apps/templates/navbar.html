@@ -37,7 +37,7 @@
                     <li><a href="{% url 'about' %}">About Us</a></li>
                     <li><a href="{% url 'our_team' %}">Our Team</a></li>
                     <li><a href="{% url 'contact' %}">Contact</a></li>
-                    <li><a href="{% url 'register' %}">Register</a></li>
+                    <!-- <li><a href="{% url 'register' %}">Register</a></li> -->
                     {% if request.user.is_anonymous %}
                     <li><a href="{% url 'login' %}"> <i class="fa fa-lock"></i> Log In</a></li>
                     {% endif %}

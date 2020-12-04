@@ -72,7 +72,7 @@ class Upcomingevent(models.Model):
 
 class Member(models.Model):
     full_name = models.CharField(max_length=100, null=False, blank=False)
-    phone = models.IntegerField(null=False, blank=False)
+    phone = models.CharField(max_length=10, null=True, blank=True)
     email = models.EmailField()
     profile = models.ImageField(upload_to='member_prof_pic/', blank=True)
     reg_date = models.DateTimeField(auto_now=True)

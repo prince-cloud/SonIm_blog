@@ -14,7 +14,7 @@
                 <br>
                 <form method="POST" action="{% url 'be_a_member' %}?next=/" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ member_form | crispy }}s
+                    {{ member_form | crispy }}
                     <p><input class="btn btn-dark btn-large" type="submit" value="Submit"> </p>
                 </form>
             </div>
